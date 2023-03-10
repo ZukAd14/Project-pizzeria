@@ -289,7 +289,7 @@
     constructor(element){
       const thisWidget = this;
       
-      
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
@@ -303,7 +303,7 @@
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      //thisWidget.setValue(settings.amountWidget.defaultValue);
     }
     setValue(value){
       const thisWidget = this;
@@ -311,12 +311,13 @@
       const newValue = parseInt(value);
 
       /*TODO: Add validation */
-      if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
+      if(thisWidget.value !== newValue && !isNaN(newValue) && ((newValue >= settings.amountWidget.defaultMin) && (newValue <= settings.amountWidget.defaultMax))){
         thisWidget.value = newValue;
+        
       }
-      
-      thisWidget.input.value = thisWidget.value;
       thisWidget.announce();
+      thisWidget.input.value = thisWidget.value;
+      
     }
     initActions(){
       const thisWidget = this;
@@ -432,7 +433,7 @@
       for(let price of thisCart.dom.totalPrice){
         price.innerHTML = thisCart.totalPrice;
       }
-      console.log('TP: ', thisCart.dom.productList);
+      //console.log('TP: ', thisCart.dom.productList);
     }
     remove(event){
       const thisCart = this;
@@ -505,7 +506,7 @@
       thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
-      thisCartProduct.dom.form = thisCartProduct.dom.wrapper.querySelector(select.cart.form); 
+      thisCartProduct.dom.form = thisCartProduct.dom.wrapper.querySelector(select.cart.form);
     }
 
     initAmountWidget(){
@@ -513,7 +514,7 @@
 
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
       thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
-
+        
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
