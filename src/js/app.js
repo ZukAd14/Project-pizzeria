@@ -83,7 +83,7 @@ export const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse: ', parsedResponse);
+        //console.log('parsedResponse: ', parsedResponse);
 
         /*save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
@@ -92,7 +92,7 @@ export const app = {
 
       });
 
-    console.log('thisApp.data: ', JSON.stringify(thisApp.data));
+    //console.log('thisApp.data: ', JSON.stringify(thisApp.data));
   },
   initCart: function(){
     const thisApp = this;
@@ -119,7 +119,7 @@ export const app = {
     thisApp.initData(); 
     thisApp.initCart();
     thisApp.initBooking();
-    console.log('thisApp.data: ', thisApp.data);
+    //console.log('thisApp.data: ', thisApp.data);
   },
 };
   

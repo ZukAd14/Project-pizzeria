@@ -9,11 +9,12 @@ class Booking{
   constructor(element){
     const thisBooking = this;
 
-    thisBooking.selectedTable = 0;
+    thisBooking.starters = [];
+    thisBooking.selectedTable = null;
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
-    console.log('conSeTa: ', thisBooking.selectedTable);
+    //console.log('conSeTa: ', thisBooking.selectedTable);
   }
 
   getData(){
@@ -70,6 +71,7 @@ class Booking{
         //console.log(eventsCurrent);
         //console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+        
       });
   }
 
@@ -79,6 +81,7 @@ class Booking{
     thisBooking.booked = {};
 
     for(let item of bookings){
+      
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
 
@@ -111,7 +114,6 @@ class Booking{
     if(typeof thisBooking.booked[date] == 'undefined'){
       thisBooking.booked[date] = {};
     }
-
     const startHour = utils.hourToNumber(hour);
 
     if(typeof thisBooking.booked[date][startHour] == 'undefined'){
@@ -128,7 +130,7 @@ class Booking{
       }
   
       thisBooking.booked[date][hourBlock].push(table);
-
+      //console.log('booked1: ', thisBooking.booked);
     }
   }
 
@@ -183,8 +185,14 @@ class Booking{
     thisBooking.dom.hourPicker = document.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.tables = document.querySelectorAll(select.booking.tables);
     thisBooking.dom.floor = document.querySelector(select.booking.floor);
-    console.log('genDOM: ', thisBooking.element);
-    //console.log('floor: ', thisBooking.dom.floor);
+    thisBooking.dom.orderButton = document.querySelector(select.booking.button);
+    thisBooking.dom.phone = document.querySelector(select.booking.phone);
+    thisBooking.dom.address = document.querySelector(select.booking.address);
+    thisBooking.dom.starters = document.querySelector(select.booking.starters);
+
+    //console.log('genDOM: ', thisBooking.element);
+    //console.log('floor: ', thisBooking.dom.starters);
+    
   }
   initWidgets(){
     const thisBooking = this;
@@ -227,9 +235,67 @@ class Booking{
           thisBooking.selectedTable = tableId;
         } 
       }  
-      console.log(event.target);
-      console.log(thisBooking.selectedTable); 
+      //console.log(event.target);
+      //console.log(thisBooking.selectedTable); 
     });
+
+    thisBooking.dom.orderButton.addEventListener('click', function(event){
+      event.preventDefault();
+      thisBooking.sendBooking();
+    });
+
+    thisBooking.dom.starters.addEventListener('click', function(event){
+      if(event.target.tagName == 'INPUT' && event.target.type == 'checkbox' && event.target.name == 'starter'){
+        if(event.target.checked == true){
+          thisBooking.starters.push(event.target.value);
+        } else {
+          const arrayStarterNumber = thisBooking.starters.indexOf(event.target.value);
+          thisBooking.starters.splice(arrayStarterNumber, 1);
+        }
+      }
+      console.log('starters: ', thisBooking.starters);
+    });
+  }
+
+  sendBooking(){
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    
+
+    
+
+    const payloads = {
+      date: thisBooking.datePicker.value,
+      hour: thisBooking.hourPicker.value,
+      table: thisBooking.selectedTable,
+      duration: parseInt(thisBooking.dom.hoursAmount.querySelector('[type="text"]').value),
+      ppl: parseInt(thisBooking.dom.peopleAmount.querySelector('[type="text"]').value),
+      starters: thisBooking.starters,
+      phone: thisBooking.dom.phone.value,
+      address: thisBooking.dom.address.value,
+    };
+
+    thisBooking.makeBooked(payloads.date, payloads.hour, payloads.duration, payloads.table);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json',
+      },
+      body: JSON.stringify(payloads)
+    };
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      }).then(function(parsedResponse){
+        console.log('respons: ', parsedResponse);
+        
+      });
+    
+    //console.log(payloads);
+    console.log('booked2: ', thisBooking.booked);
   }
 }
 

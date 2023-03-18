@@ -215,7 +215,7 @@
               <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
             </div>
           </label>
-          <div> <!-- option-row -->
+          <div class="user_helper"> <!-- option-row -->
             <span class="booking-option-title">Starters</span>
             <div class="checkbox"> <!-- checkbox -->
               <label>
@@ -234,8 +234,8 @@
           </div>
         </div>
         <div class="order-confirmation">
-          <input type="tel" name="phone" placeholder="Your phone">
-          <input type="text" name="address" placeholder="Your address">
+          <input type="tel" name="phone" placeholder="Your phone" minlength="9" maxlength="9" required>
+          <input type="text" name="address" placeholder="Your address" minlength="8" required>
           <button type="submit" class="btn-secondary">Book table</button>
         </div>
       </form>
