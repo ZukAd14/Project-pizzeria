@@ -2,6 +2,8 @@ import {settings, select, classNames, templates}  from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Home from './components/Home.js';
+
 export const app = {
   initBooking: function(){
     const thisApp = this;
@@ -106,6 +108,25 @@ export const app = {
       app.cart.add(event.detail.product);
     });
   },
+  initHome: function(){
+    const thisApp = this;
+
+    const homeElem = document.querySelector(select.containerOf.homePage);
+    thisApp.homePage = new Home(homeElem);
+  },
+  Flickity: function(){
+    const thisApp = this;
+    const elem = document.querySelector('.main-carousel');
+    const flkty = new Flickity( elem, {
+      // options
+      cellAlign: 'center',
+      freeScroll: true,
+      wrapAround: true,
+      contain: true,
+      autoPlay: true,
+      imagesLoaded: true,
+    });
+  },
 
   init: function(){
     const thisApp = this;
@@ -119,6 +140,8 @@ export const app = {
     thisApp.initData(); 
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initHome();
+    thisApp.Flickity();
     //console.log('thisApp.data: ', thisApp.data);
   },
 };

@@ -9,6 +9,7 @@
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="./vendor/range-slider.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,6 +22,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
         </div>
@@ -62,6 +64,9 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div id="home-page" class="home-page container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -69,6 +74,72 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
+  <script id="template-home-page" type="text/x-handlebars-template">
+    <div class="home-style">
+      <div class="box-wrapper">
+        <div class="box order"><img src="/images/pizza-1.jpg"><h2>ORDER ONLINE</h2></div>
+        <div class="box book"><img src="/images/pizza-2.jpg"><h2>BOOK A TABLE</h2></div>
+        <div class="box large">
+          <h1>OPENING HOURS</h1>
+          <h5>TUE-SUN, 12PM-12AM</h5>
+        </div>
+      </div>
+    
+      <div class="main-carousel">
+        <div class="carousel-cell">
+          <div class="img-wrapper"><img src="/images/pizza-3.jpg"></div>
+          <div class="quote">
+            <h3>Lorem Ipsum!</h3>
+            <p>Ut enim ad minima veniam, 
+              quis nostrum exercitationem ullam corporis suscipit laboriosam,
+              nisi ut aliquid ex ea commodi consequatur?<br><br>-Cahyr Aep Caellah</p>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="img-wrapper"><img src="/images/pizza-3.jpg"></div>
+          <div class="quote">
+            <h3>Amazing Service</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit
+              voluptatem accusantium doloremque laudantium, totam rem 
+              aperiam, eaque ipsa quae ab illo inventore veritatis et
+                quasi architecto beatae vitae dicta sunt explicabo.<br><br>-Jerry TheMouse</p>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="img-wrapper"><img src="/images/pizza-3.jpg"></div>
+          <div class="quote">
+            <h3>Fresh Ingredients</h3>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+              aut odit aut fugit, sed quia consequuntur magni dolores eos 
+              qui ratione voluptatem sequi nesciunt.<br><br>-Alfred</p>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="img-wrapper"><img src="/images/pizza-3.jpg"></div>
+          <div class="quote">
+            <h3>Clean Floors!</h3>
+            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+              amet, consectetur, adipisci velit, sed quia non numquam eius
+              modi tempora incidunt ut labore et dolore magnam aliquam 
+              quaerat voluptatem.<br><br>-Fred Flinstone</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <div class="image"><img src="/images/pizza-4.jpg"></div>
+        <div class="image"><img src="/images/pizza-5.jpg"></div>
+        <div class="image"><img src="/images/pizza-6.jpg"></div>
+        <div class="image"><img src="/images/pizza-7.jpg"></div>
+        <div class="image"><img src="/images/pizza-8.jpg"></div>
+        <div class="image"><img src="/images/pizza-9.jpg"></div>
+      </div>
+
+      <div class="footer"><a href="#" class="instagram">View more on Instagram</a></div>
+    </div>
+  
+  </script>
 
   <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
@@ -244,6 +315,7 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="./vendor/range-slider.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
