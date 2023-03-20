@@ -73,6 +73,11 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+  homePage: {
+    boxWrapper: '.box-wrapper',
+    box: '.box',
+    links: '.box a',
+  },
 };
 
 export const classNames = {
