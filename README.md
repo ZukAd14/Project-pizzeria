@@ -24,7 +24,7 @@ In the reservations section, users can book a table for their desired date, time
 - **Duration**: Users can specify how long they intend to occupy the table.
 
 # Live Gallery
-<img src="https://i.ibb.co/v12WXM9/1.png" width="450" height="550">
-<img src="https://i.ibb.co/wKtPvtp/2.png" width="450" height="550">
-<img src="https://i.ibb.co/4mvXxpC/3.png" width="450" height="550">
-<img src="https://i.ibb.co/w0tfbhH/4.png" width="450" height="550">
+<img src="https://i.ibb.co/v12WXM9/1.png">
+<img src="https://i.ibb.co/wKtPvtp/2.png">
+<img src="https://i.ibb.co/4mvXxpC/3.png">
+<img src="https://i.ibb.co/w0tfbhH/4.png">
